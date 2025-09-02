@@ -1,4 +1,4 @@
-# 🔥 Redis 완전 정복 가이드
+# 🔥 Redis 학습
 
 <div align="center">
 
