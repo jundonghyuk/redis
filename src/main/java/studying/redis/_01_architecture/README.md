@@ -83,4 +83,13 @@ Producer → Stream → Consumer Group → Multiple Consumers
 - 카프카처럼 데이터를 읽을 수 있는 **Consumer**, **Consumer Group** 존재
 - 저장된 데이터를 시간대별로 검색하는 것도 가능
 
+---
+
+## 참고 문헌
+
+- **실전 레디스** by 하야시 쇼고
+  - CHAPTER_01_레디스의 시작
+- **개발자를 위한 레디스 (Redis for Developers)** by 김가림
+  - CHAPTER_01_마이크로서비스 아키텍처와 레디스
+
 
