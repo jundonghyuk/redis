@@ -22,6 +22,11 @@
 
 <table>
   <tr>
+    <td colspan="5" align="center">
+      <h2>📐 이론 및 아키텍처</h2>
+    </td>
+  </tr>
+  <tr>
     <td align="center">
       <h3> 기초</h3>
     </td>
@@ -29,10 +34,10 @@
       <h4><a href="#1-redis-정의-및-특징">1. Redis 정의 및 특징</a></h4>
     </td>
     <td align="center">
-      <a href="./src/main/java/studying/redis/_01_definition/redis-core.md">📖 레디스 코어 문서</a>
+      <a href="./src/main/java/studying/redis/_01_definition/redis-core.md">📖 레디스 학습 문서</a>
     </td>
     <td align="center">
-      <a href="./src/main/java/studying/redis/_01_definition/redis-core.md">📖 스프링 통합 문서</a>
+      <a href="./src/main/java/studying/redis/_01_definition/redis-spring-integration.md">📖 스프링 통합 학습 문서</a>
     </td>
     <td align="center">
       <a href="./src/test/java/studying/redis/_01_definition/RedisConnectionFactoryTest.java">🧪 테스트</a>
@@ -46,10 +51,13 @@
       <h4><a href="#2-redis-자료-구조">2. Redis 자료 구조</a></h4>
     </td>
     <td align="center">
-      <a href="./docs/02-redis-data-structures.md">📖 가이드</a>
+      <a href="./src/main/java/studying/redis/_02_datatype/redis-core.md">📖 레디스 학습 문서</a>
     </td>
     <td align="center">
-      <a href="./src/test/java/studying/redis/_02_datastructures/DataStructuresTest.java">🧪 테스트</a>
+      <a href="./src/main/java/studying/redis/_02_datatype/redis-spring-integration.md">📖 스프링 통합 학습 문서</a>
+    </td>
+    <td align="center">
+      <a href="./src/test/java/studying/redis//RedisConnectionFactoryTest.java">🧪 테스트</a>
     </td>
   </tr>
   <tr>
@@ -60,17 +68,20 @@
       <h4><a href="#3-redis-구조">3. Redis 구조</a></h4>
     </td>
     <td align="center">
-      <a href="./docs/03-redis-clustering.md">📖 가이드</a>
+      <a href="./src/main/java/studying/redis/_02_datatype/redis-core.md">📖 레디스 학습 문서</a>
     </td>
     <td align="center">
-      <a href="./src/test/java/studying/redis/_03_clustering/ClusteringTest.java">🧪 테스트</a>
+      <a href="./src/main/java/studying/redis/_02_datatype/redis-spring-integration.md">📖 스프링 통합 학습 문서</a>
+    </td>
+    <td align="center">
+      <a href="./src/test/java/studying/redis//RedisConnectionFactoryTest.java">🧪 테스트</a>
     </td>
   </tr>
 </table>
 
 <table>
   <tr>
-    <td colspan="4" align="center">
+    <td colspan="5" align="center">
       <h2>💼 실무 활용 사례</h2>
     </td>
   </tr>
@@ -82,10 +93,13 @@
       <h4><a href="#4-redis-캐시-활용-사례">4. Redis Caching</a></h4>
     </td>
     <td align="center">
-      <a href="./docs/04-redis-caching.md">📖 가이드</a>
+      <a href="./src/main/java/studying/redis/_02_datatype/redis-core.md">📖 레디스 학습 문서</a>
     </td>
     <td align="center">
-      <a href="./src/test/java/studying/redis/_04_caching/CachingTest.java">🧪 테스트</a>
+      <a href="./src/main/java/studying/redis/_02_datatype/redis-spring-integration.md">📖 스프링 통합 학습 문서</a>
+    </td>
+    <td align="center">
+      <a href="./src/test/java/studying/redis//RedisConnectionFactoryTest.java">🧪 테스트</a>
     </td>
   </tr>
   <tr>
@@ -96,10 +110,13 @@
       <h4><a href="#5-redis-메시지-큐-활용-사례">5. Redis Message Queue</a></h4>
     </td>
     <td align="center">
-      <a href="./docs/05-redis-message-queue.md">📖 가이드</a>
+      <a href="./src/main/java/studying/redis/_02_datatype/redis-core.md">📖 레디스 학습 문서</a>
     </td>
     <td align="center">
-      <a href="./src/test/java/studying/redis/_05_messaging/MessageQueueTest.java">🧪 테스트</a>
+      <a href="./src/main/java/studying/redis/_02_datatype/redis-spring-integration.md">📖 스프링 통합 학습 문서</a>
+    </td>
+    <td align="center">
+      <a href="./src/test/java/studying/redis//RedisConnectionFactoryTest.java">🧪 테스트</a>
     </td>
   </tr>
   <tr>
@@ -110,10 +127,13 @@
       <h4><a href="#6-redis-pub-sub-활용-사례">6. Redis Pub/Sub</a></h4>
     </td>
     <td align="center">
-      <a href="./docs/06-redis-pubsub.md">📖 가이드</a>
+      <a href="./src/main/java/studying/redis/_02_datatype/redis-core.md">📖 레디스 학습 문서</a>
     </td>
     <td align="center">
-      <a href="./src/test/java/studying/redis/_06_pubsub/PubSubTest.java">🧪 테스트</a>
+      <a href="./src/main/java/studying/redis/_02_datatype/redis-spring-integration.md">📖 스프링 통합 학습 문서</a>
+    </td>
+    <td align="center">
+      <a href="./src/test/java/studying/redis//RedisConnectionFactoryTest.java">🧪 테스트</a>
     </td>
   </tr>
   <tr>
@@ -124,10 +144,13 @@
       <h4><a href="#7-redis-분산락-활용-사례">7. Redis Distributed Lock & Redissson</a></h4>
     </td>
     <td align="center">
-      <a href="./docs/07-redis-distributed-lock.md">📖 가이드</a>
+      <a href="./src/main/java/studying/redis/_02_datatype/redis-core.md">📖 레디스 학습 문서</a>
     </td>
     <td align="center">
-      <a href="./src/test/java/studying/redis/_07_lock/DistributedLockTest.java">🧪 테스트</a>
+      <a href="./src/main/java/studying/redis/_02_datatype/redis-spring-integration.md">📖 스프링 통합 학습 문서</a>
+    </td>
+    <td align="center">
+      <a href="./src/test/java/studying/redis//RedisConnectionFactoryTest.java">🧪 테스트</a>
     </td>
   </tr>
   <tr>
@@ -138,10 +161,13 @@
       <h4><a href="#8-redis-RateLimiter--활용-사례">8. Redis Rate Limiter</a></h4>
     </td>
     <td align="center">
-      <a href="./docs/08-redis-rate-limiter.md">📖 가이드</a>
+      <a href="./src/main/java/studying/redis/_02_datatype/redis-core.md">📖 레디스 학습 문서</a>
     </td>
     <td align="center">
-      <a href="./src/test/java/studying/redis/_08_ratelimit/RateLimiterTest.java">🧪 테스트</a>
+      <a href="./src/main/java/studying/redis/_02_datatype/redis-spring-integration.md">📖 스프링 통합 학습 문서</a>
+    </td>
+    <td align="center">
+      <a href="./src/test/java/studying/redis//RedisConnectionFactoryTest.java">🧪 테스트</a>
     </td>
   </tr>
   <tr>
@@ -152,17 +178,20 @@
       <h4><a href="#9-redis-분석-계산-활용-사례">9. Redis Analysis/Calculation</a></h4>
     </td>
     <td align="center">
-      <a href="./docs/09-redis-analytics.md">📖 가이드</a>
+      <a href="./src/main/java/studying/redis/_02_datatype/redis-core.md">📖 레디스 학습 문서</a>
     </td>
     <td align="center">
-      <a href="./src/test/java/studying/redis/_09_analytics/AnalyticsTest.java">🧪 테스트</a>
+      <a href="./src/main/java/studying/redis/_02_datatype/redis-spring-integration.md">📖 스프링 통합 학습 문서</a>
+    </td>
+    <td align="center">
+      <a href="./src/test/java/studying/redis//RedisConnectionFactoryTest.java">🧪 테스트</a>
     </td>
   </tr>
 </table>
 
 <table>
   <tr>
-    <td colspan="4" align="center">
+    <td colspan="5" align="center">
       <h2>⚙️ 고급 기능</h2>
     </td>
   </tr>
@@ -174,10 +203,13 @@
       <h4><a href="#10-redis-트랜잭션">10. Redis 트랜잭션</a></h4>
     </td>
     <td align="center">
-      <a href="./docs/10-redis-transactions.md">📖 가이드</a>
+      <a href="./src/main/java/studying/redis/_02_datatype/redis-core.md">📖 레디스 학습 문서</a>
     </td>
     <td align="center">
-      <a href="./src/test/java/studying/redis/_10_transactions/TransactionTest.java">🧪 테스트</a>
+      <a href="./src/main/java/studying/redis/_02_datatype/redis-spring-integration.md">📖 스프링 통합 학습 문서</a>
+    </td>
+    <td align="center">
+      <a href="./src/test/java/studying/redis//RedisConnectionFactoryTest.java">🧪 테스트</a>
     </td>
   </tr>
   <tr>
@@ -188,10 +220,13 @@
       <h4><a href="#11-aof-append-only-file">11. AOF (Append Only File)</a></h4>
     </td>
     <td align="center">
-      <a href="./docs/11-redis-persistence.md">📖 가이드</a>
+      <a href="./src/main/java/studying/redis/_02_datatype/redis-core.md">📖 레디스 학습 문서</a>
     </td>
     <td align="center">
-      <a href="./src/test/java/studying/redis/_11_persistence/PersistenceTest.java">🧪 테스트</a>
+      <a href="./src/main/java/studying/redis/_02_datatype/redis-spring-integration.md">📖 스프링 통합 학습 문서</a>
+    </td>
+    <td align="center">
+      <a href="./src/test/java/studying/redis//RedisConnectionFactoryTest.java">🧪 테스트</a>
     </td>
   </tr>
 </table>
