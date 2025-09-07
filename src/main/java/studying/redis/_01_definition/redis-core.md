@@ -1,4 +1,4 @@
-# NoSQL과 Redis
+# 레디스 정의
 
 ### 1. NoSQL 기본 개념
 - Q1. NoSQL이 무엇인가요?
