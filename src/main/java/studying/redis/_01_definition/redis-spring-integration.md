@@ -5,7 +5,6 @@
 - Q1. 스프링에서 사용하는 레디스 드라이버는 어떤 것이 있는가?
 - Q2. Lettuce 의 Redis 로의 Connection 방식은 어떠한가?
 - Q3. RedisTemplate 이 무엇이고, 동작 방식이 어떻게 되는가?
-- Q4. Redis 관련 클래스들의 관계는 어떠헥 되는가?
 
 ---
 
@@ -51,6 +50,8 @@ LettuceConnectionFactory 는 기본적으로 쓰레드 안전한 native connecti
 
 - 중심이 되는 메서드는 `execute(RedisCallback)`이며, RedisCallback 인터페이스를 구현하는 Redis 접근 코드를 지원한다.
   이 메서드는 `RedisConnection` 처리를 제공하므로, Redis 연결의 획득/종료를 명시적으로 신경 쓸 필요가 없고, Connection 생명주기 예외 처리도 할 필요가 없다.
+
+
 
 ---
 
