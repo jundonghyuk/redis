@@ -1,4 +1,4 @@
-package studying.redis._01_definition.configurations;
+package studying.redis._02_datatype.configurations;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

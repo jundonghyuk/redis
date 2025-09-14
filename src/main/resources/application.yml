@@ -7,6 +7,9 @@ redis:
   port: 6379
   chapters:
     chapter01:
+      enabled: false
+      type: lettuce # lettuce or jedis
+    chapter02:
       enabled: true
       type: lettuce # lettuce or jedis
 
