@@ -33,32 +33,52 @@ Tomcat 쓰레드가 레디스 명령 작업을 하면 `CompletableFuture` 형태
 IO 작업이 끝나면 큐에서 `CompletableFuture` 를 꺼내서 결과를 세팅하고 `complete` 메서드를 호출하여, 요청한 Tomcat 쓰레드에게 결과를 전달한다.
 
 #### Q1-1-1. CompletableFuture 형태로 결과를 반환한다고 하였는데, CompletableFuture 의 동작원리는 어떻게 되는가?
-CompletableFuture 의 `get` 메서드를 호출하면, 호출한 쓰레드는 내부 `Queue` 에 등록되고, LockSupport 의 `park` 메서드를 호출하여 block 된다.
+CompletableFuture 의 `get` 메서드를 호출하면, 호출한 쓰레드는 내부 `Queue` 에 등록되고, LockSupport 의 `park` 메서드를 호출하여 block 된다.  
 다른 쓰레드에서, 결과값과 함께 `complete` 메서드를 호출하면, 내부 `Queue` 에서 해당 쓰레드를 꺼내고, `LockSupport` 의 `unpark` 메서드를 호출하여 block 상태를 해제한다.
 이제 결과가 있으니 while 문을 빠져나와서 결과를 반환한다.
 ``` java
-    while ((r = result) == null) {
-            if (q == null) {
-                q = new Signaller(interruptible, 0L, 0L);
-                if (Thread.currentThread() instanceof ForkJoinWorkerThread)
-                    ForkJoinPool.helpAsyncBlocker(defaultExecutor(), q);
-            }
-            else if (!queued)
-                queued = tryPushStack(q);
-            else if (interruptible && q.interrupted) {
-                q.thread = null;
-                cleanStack();
-                return null;
-            }
-            else {
-                try {
-                    ForkJoinPool.managedBlock(q);
-                } catch (InterruptedException ie) { // currently cannot happen
-                    q.interrupted = true;
-                }
+return new LettuceInvoker(connection, (future, converter, nullDefault) -> {
+	try {
+		Object result = await(future.get());
+		return result != null ? converter.convert(result) : nullDefault.get();
+	} catch (Exception ex) {
+		throw convertLettuceAccessException(ex);
+	}
+});
+```
+
+``` java
+while ((r = result) == null) {
+        if (q == null) {
+            q = new Signaller(interruptible, 0L, 0L);
+            if (Thread.currentThread() instanceof ForkJoinWorkerThread)
+                ForkJoinPool.helpAsyncBlocker(defaultExecutor(), q);
+        }
+        else if (!queued)
+            queued = tryPushStack(q);
+        else if (interruptible && q.interrupted) {
+            q.thread = null;
+            cleanStack();
+            return null;
+        }
+        else {
+            try {
+                ForkJoinPool.managedBlock(q);
+            } catch (InterruptedException ie) { // currently cannot happen
+                q.interrupted = true;
             }
         }
+    }
 ```
+
+### Q1-2. Lettuce 가 Netty 기반의 비동기 통신을 할 때 장점이 무엇이냐?
+Netty 의 `NioEventLoop` 를 사용하여 IO 작업을 비동기 통신으로 처리할 수 있다.  
+MVC 모델에선 IO Task 를 건내준 호출 쓰레드가 block 되어서 성능(속도)면에선 이점이 크지 않다고 볼 수 있다.  
+하지만, `Lettuce`의 `nativeConnection` 을 사용하면, 하나의 커넥션은 하나의 Channel 을 가지고있고, 이 채널은 소켓과 대응되는 개념이므로 OS 레벨에서는 불필요한 소켓을 많이 열 필요가 없어진다.  
+이 커넥션은 여러 쓰레드가 공유(Thread safe 하기 때문)하므로 소켓이 차지하는 공간이나, 소켓을 생성 및 삭제하기 위한 불필요한 System call 을 줄일 수 있다.  
+그렇기에 이 커넥션을 `sharedNativeConnection` 이라고도 한다.
+물론 이 공유 쓰레드는 blocking 한 메서드에서는 사용되지 않고, 별도의 커넥션을 생성해서 사용한다. (pool config 를 설정하면 커넥션을 풀로 관리한다.)  
+그 이유는, 레디스의 blocking 한 메서드(예를 들면 BLPOP 등)를 호출하였을 때, 커넥션을 공유하여 전송된 다른 커맨드들이 Blocked 될 가능성이 있기 때문이다.
 
 ---
 
