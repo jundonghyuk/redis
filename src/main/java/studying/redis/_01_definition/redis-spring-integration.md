@@ -30,9 +30,11 @@ Jedis 는 지원하지 않고, Lettuce 는 지원한다.
 **A:**
  
 MVC 아키텍쳐에서 Tomcat 쓰레드의 입장에서 먼저 보면, Tomcat 쓰레드가 레디스 명령 Task 를 제출하고 이벤트루프의 쓰레드를 깨우면서, 최종적으로 `CompletableFuture` 형태로 반환을 받고 block 된다.   
-다른 쓰레드의 IO 작업이 끝나면 큐에서 `CompletableFuture` 를 꺼내서 `complete` 메서드를 호출하여 결과를 세팅하고 최종적으로 blocked 된 톰캣 쓰레드를 깨우게 된다. 
+다른 쓰레드가 IO 작업을 끝내면 큐에서 `CompletableFuture` 를 꺼내서 `complete` 메서드를 호출하여 결과를 세팅하고 최종적으로 blocked 된 톰캣 쓰레드를 깨우게 된다. 
 
 ``` java
+작업 제출 
+
 AbstractChannelHandlerContext#write(Object msg, boolean flush, ChannelPromise promise) : void
 
 final WriteTask task = WriteTask.newInstance(next, m, promise, flush);
@@ -60,6 +62,27 @@ if (!inEventLoop) {
 }
 ```
 
+``` java
+대기중인 쓰레드 깨우기
+
+CommandHandler#decode(ChannelHandlerContext ctx, ByteBuf buffer) : void
+
+if (!decode(ctx, buffer, command)) { // 결과 세팅
+  ...
+}
+
+
+if (canComplete(command)) {
+  stack.poll(); // RedisCommand 큐에서 꺼내기
+  
+  try {
+    complete(command);  // 대기중인 쓰레드 깨우기
+  } catch (Exception e) {
+    ...
+  }
+}
+
+```
 IO 통신을 담당하는 Netty EventLoop 기반의 `NioEventLoop` 는 싱글 쓰레드로 동작한다.
 이 쓰레드는 `Queue`에 등록된 `Task`들을 처리하거나, IO 작업을 한다. 이 두 작업의 비율은 IO ratio 라는 값으로 조절할 수 있다.  
 
