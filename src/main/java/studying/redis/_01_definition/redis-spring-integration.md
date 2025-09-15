@@ -83,8 +83,8 @@ if (canComplete(command)) {
 }
 
 ```
-IO 통신을 담당하는 Netty EventLoop 기반의 `NioEventLoop` 는 싱글 쓰레드로 동작한다.
-이 쓰레드는 `Queue`에 등록된 `Task`들을 처리하거나, IO 작업을 한다. 이 두 작업의 비율은 IO ratio 라는 값으로 조절할 수 있다.  
+IO 통신을 담당하는 Netty EventLoop 입장에서 보면, 일단 `NioEventLoop` 는 싱글 쓰레드로 동작한다.
+이 쓰레드는 `Queue`에 등록된 `Task`들을 처리하거나, IO 작업을 한다. 이 두 작업의 비율은 IO ratio 라는 값으로 조절할 수 있다.
 
 #### Q1-1-1. CompletableFuture 형태로 결과를 반환한다고 하였는데, CompletableFuture 의 동작원리는 어떻게 되는가?
 
