@@ -30,7 +30,7 @@ Jedis 는 지원하지 않고, Lettuce 는 지원한다.
 **A:**
  
 MVC 아키텍쳐에서 Tomcat 쓰레드의 입장에서 먼저 보면, Tomcat 쓰레드가 레디스 명령 Task 를 제출하고 이벤트루프의 쓰레드를 깨우면서, 최종적으로 `CompletableFuture` 형태로 반환을 받고 block 된다.   
-IO 작업이 끝나면 큐에서 `CompletableFuture` 를 꺼내서 `complete` 메서드를 호출하여 결과를 세팅하고 최종적으로 blocked 된 톰캣 쓰레드를 깨우게 된다. 
+다른 쓰레드의 IO 작업이 끝나면 큐에서 `CompletableFuture` 를 꺼내서 `complete` 메서드를 호출하여 결과를 세팅하고 최종적으로 blocked 된 톰캣 쓰레드를 깨우게 된다. 
 
 ``` java
 AbstractChannelHandlerContext#write(Object msg, boolean flush, ChannelPromise promise) : void
